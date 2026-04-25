@@ -66,9 +66,10 @@ public class PaymentController : Controller
             $"&business={paypalMerchantId}" +
             $"&item_name={Uri.EscapeDataString(item.Name)}" +
             $"&amount={item.Price:0.00}" +
-            "&currency_code=ILS" +
+            $"&currency_code=ILS" +
             $"&return={Uri.EscapeDataString(returnUrl)}" +
             $"&cancel_return={Uri.EscapeDataString(cancelUrl)}" +
+            $"&notify_url={Uri.EscapeDataString(_baseUrl + "/api/payment/ipn")}" +
             $"&custom={orderId}" +
             "&landing_page=Billing";
 
