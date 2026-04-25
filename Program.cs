@@ -27,8 +27,17 @@ else
     //connectionString = @"Host=nozomi.proxy.rlwy.net;Port=42425;Database=railway;Username=postgres;Password=AoIBESWkuevWLENtMiZxQsMNMgknsIYq;";
 }
 
-builder.Services.AddDbContext<AppDb>(options =>
-    options.UseNpgsql(connectionString));
+if (!string.IsNullOrWhiteSpace(connectionString))
+{
+    logger.LogInformation("Using DB connection");
+
+    builder.Services.AddDbContext<AppDb>(options =>
+        options.UseNpgsql(connectionString));
+}
+else
+{
+    logger.LogWarning("No DB connection configured — running without DB");
+}
 
 var app = builder.Build();
 
