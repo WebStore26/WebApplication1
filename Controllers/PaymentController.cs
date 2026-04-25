@@ -59,8 +59,8 @@ public class PaymentController : Controller
         _db.Shop_Orders.Add(order);
         await _db.SaveChangesAsync();
 
-        var returnUrl = $"{_baseUrl}/success?orderid={orderId}";
-        var cancelUrl = $"{_baseUrl}/fail?orderid={orderId}";
+        var returnUrl = $"{_baseUrl}/api/payment/success?orderid={orderId}";
+        var cancelUrl = $"{_baseUrl}/api/payment/fail?orderid={orderId}";
 
         var redirectUrl =
             Paypal_Url +
