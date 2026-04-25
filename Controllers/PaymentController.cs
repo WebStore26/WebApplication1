@@ -24,7 +24,9 @@ public class PaymentController : Controller
     {
         _logger = logger;
         //baseUrl = "https://localhost:5001/api/payment";
-        _baseUrl = config["App:BaseUrl"];
+        _baseUrl = Environment.GetEnvironmentVariable("BASE_URL")
+                   ?? config["App:BaseUrl"];
+
         _logger.LogInformation("Base URL: {BaseUrl}", _baseUrl);
         _db = db;
     }
